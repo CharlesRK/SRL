@@ -20,11 +20,9 @@ if __name__ == '__main__':
     udp.InitCmdData(cmd)
 
     motiontime = 0
-
-    motiontime = motiontime + 1
-    time.sleep(0.002)
     while True:
-        
+        time.sleep(0.002)
+        motiontime = motiontime + 1
 
         udp.Recv()
         udp.GetRecv(state)
@@ -51,36 +49,41 @@ if __name__ == '__main__':
         # cmd.velocity = [-0.2, 0] # -1  ~ +1
         # cmd.yawSpeed = 0
         # cmd.bodyHeight = 0.1
-        
-        print(f"starting:\n")
 
-     
-
-        if(motiontime > 1000 and motiontime < 3500):
+        if(motiontime > 1000 and motiontime < 2500):
                     cmd.mode = 2
                     cmd.gaitType = 1
                     cmd.velocity = [0.4, 0] # -1  ~ +1
                     cmd.yawSpeed = 0
                     cmd.footRaiseHeight = 0.1
+                    
+                   
                     # printf("walk\n")
                            # printf("walk\n")
                 
-        if(motiontime > 3500 and motiontime < 4500):
+        if(motiontime > 2500 and motiontime < 3500):
                     cmd.mode = 0
                     cmd.velocity = [0, 0]
+                    
                 
-        if(motiontime > 4500 and motiontime < 5000):
+        if(motiontime > 3500 and motiontime < 5000):
                     cmd.mode = 2
                     cmd.gaitType = 1
                     cmd.velocity = [0.4, 0] # -1  ~ +1
                     cmd.yawSpeed = 2
                     cmd.footRaiseHeight = 0.1
+                    
                     # printf("walk\n")
-        if(motiontime > 5000 and motiontime < 5500):
+                    
+        if(motiontime > 5000 and motiontime < 6000):
                     cmd.mode = 0
                     cmd.velocity = [0, 0]
+                    
                 
         udp.SetSend(cmd)
+        udp.Send()
+                
+                
         udp.Send()
                 
                 
